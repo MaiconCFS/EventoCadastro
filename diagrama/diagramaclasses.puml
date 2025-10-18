@@ -1,0 +1,61 @@
+@startuml
+!theme plain
+
+class AgendaEventosApp {
+  + main(String[] args)
+}
+
+class Evento {
+  - String nome
+  - Date data
+  - String local
+  - TipoEvento tipo
+  + getNome()
+  + setNome()
+  + getData()
+  + setData()
+}
+
+class Participante {
+  - String nome
+  - String email
+  - String telefone
+  + getNome()
+  + setNome()
+  + getEmail()
+  + setEmail()
+}
+
+enum TipoEvento {
+  WORKSHOP
+  PALESTRA
+  SEMINARIO
+  OUTRO
+}
+
+class ServicoEventos {
+  - List<Evento> eventos
+  - List<Participante> participantes
+  + cadastrarEvento()
+  + listarEventos()
+  + inscreverParticipante()
+}
+
+class GerenciadorDados {
+  + salvarDados()
+  + carregarDados()
+}
+
+class FormatadorData {
+  + formatar(Date data)
+  + parse(String data)
+}
+
+AgendaEventosApp --> ServicoEventos
+ServicoEventos --> Evento
+ServicoEventos --> Participante
+Evento --> TipoEvento
+ServicoEventos --> GerenciadorDados
+GerenciadorDados --> FormatadorData
+
+@enduml
